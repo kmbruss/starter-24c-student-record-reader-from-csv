@@ -11,7 +11,7 @@ Student ReadStudentRecFromStream(std::istream& is) {
     if (is.fail()) {
       break;
     }
-    return student(name, uin, gpa);
+    return Student(name, uin, gpa);
   }
   return Student{};
 }
