@@ -2,7 +2,7 @@
 
 Student ReadStudentRecFromStream(std::istream& is) {
   // your implementation here...
-  while (is.good) {
+  while (is.good()) {
     std::string name = "";
     unsigned int uin = 0;
     double gpa = 0.0;
