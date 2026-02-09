@@ -9,11 +9,12 @@ Student ReadStudentRecFromStream(std::istream& is) {
   char firstThrow = '\0';
   char secondThrow = '\0';
   
-  if (is >> firstname >> lastname >> firstThrow >> uin >> secondThrow >> gpa) {
-    if (!(firstThrow == ',' && secondThrow == ',')) {
-      return Student{};
-    }
-    return Student(firstname + " " + lastname, uin, gpa);
+  if (!(is >> firstname >> lastname >> firstThrow >> uin >> secondThrow >> gpa)) {
+    return Student{};
   }
-  return Student{};
+  if (firstThrow != ',' || secondThrow != ',') {
+      return Student{};
+  }
+  
+  return Student(firstname + " " + lastname, uin, gpa);
 }
