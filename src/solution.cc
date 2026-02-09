@@ -5,16 +5,23 @@ Student ReadStudentRecFromStream(std::istream& is) {
   std::string firstname = "";
   std::string lastname = "";
   unsigned int uin = 0;
-  double gpa = 0.0;
-  char firstThrow = '\0';
-  char secondThrow = '\0';
+  double gpa = 0.0
+  char throw_away = '\0';
   
-  if (!(is >> firstname >> lastname >> firstThrow >> uin >> secondThrow >> gpa)) {
+  if (!(is >> firstname >> lastname >> uin >> throw_away >> gpa)) {
     return Student{};
   }
-  if (firstThrow != ',' || secondThrow != ',') {
+  if (throw_away != ',') {
       return Student{};
   }
   
-  return Student(firstname + " " + lastname, uin, gpa);
+  if (lastname[lastname.length() - 1] != ',') {
+    return Student{};
+  }
+  
+  std::string last = "";
+  for (int i = 0; i < lastname.length() - 2; i++) {
+      last += lastname[i];
+  }
+  return Student(firstname + " " + last, uin, gpa);
 }
